@@ -31,6 +31,7 @@ struct BarView: View {
                 }
                 Image(systemName: "star.fill")
                     .foregroundColor(.blue)
+                    .font(.system(size: 17))
             }
             Text("10 citations")
                 .font(.caption)
