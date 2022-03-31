@@ -25,6 +25,7 @@
 		CA1B697527F5D04B003C44CC /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1B697427F5D04B003C44CC /* Network.swift */; };
 		CA1B697727F5D095003C44CC /* Quotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1B697627F5D095003C44CC /* Quotes.swift */; };
 		CA1B697927F5D48D003C44CC /* QuoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1B697827F5D48D003C44CC /* QuoteViewModel.swift */; };
+		CA1B697B27F602A5003C44CC /* FinalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1B697A27F602A5003C44CC /* FinalView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		CA1B697427F5D04B003C44CC /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		CA1B697627F5D095003C44CC /* Quotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quotes.swift; sourceTree = "<group>"; };
 		CA1B697827F5D48D003C44CC /* QuoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteViewModel.swift; sourceTree = "<group>"; };
+		CA1B697A27F602A5003C44CC /* FinalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				CA1B694D27F5CB71003C44CC /* QuoteView.swift */,
+				CA1B697A27F602A5003C44CC /* FinalView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 				CA1B697127F5CFC7003C44CC /* API.swift in Sources */,
 				CA1B694C27F5CB71003C44CC /* MyProgressApp.swift in Sources */,
 				CA1B697927F5D48D003C44CC /* QuoteViewModel.swift in Sources */,
+				CA1B697B27F602A5003C44CC /* FinalView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

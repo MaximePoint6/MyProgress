@@ -19,16 +19,6 @@ struct QuoteView: View {
                 .ignoresSafeArea()
                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/3*2)
             VStack {
-                
-    //            VStack {
-    //                List(viewModel.quotes, id: \.id) { quote in
-    //                    Button {
-    //                        //
-    //                    } label: {
-    //                        Text(quote.author)
-    //                    }
-    //                }
-    //            }
                 Text("Auteur")
                     .padding(10)
                     .font(.system(size: 40))
@@ -67,7 +57,7 @@ struct QuoteView: View {
                                     .cornerRadius(10)
                                     .foregroundColor(.gray).opacity(0.2)
                                 Rectangle()
-                                    .frame(width: UIScreen.main.bounds.width-200, height: 10)
+                                    .frame(width: (UIScreen.main.bounds.width-50)/100*CGFloat(viewModel.percentage), height: 10)
                                     .cornerRadius(10)
                                     .foregroundColor(Color("Orange"))
                             }
@@ -91,14 +81,20 @@ struct QuoteView: View {
                         .background(Color("Pink"))
                         .clipShape(Capsule())
                 }.padding()
-                    .alert(isPresented: $viewModel.showingAlert) {
-                                Alert(title: Text("Important message"), message: Text("Wear sunscreen"), dismissButton: .default(Text("Got it!")))
-                            }
+                    .alert("Tu es à 50 % des citations", isPresented: $viewModel.showingAlert) {
+                        Button("Arrêter") {
+                            viewModel.percentageToZero()
+                            viewModel.showFinalView.toggle()
+                        }
+                        Button("Continuer") { }
+                    }.sheet(isPresented: $viewModel.showFinalView) {
+                        FinalView()
+                }
                 Spacer()
             }
         }.background(
             LinearGradient(gradient: Gradient(colors: [Color("Orange"), Color("Yellow")]), startPoint: .topLeading, endPoint: .topTrailing).ignoresSafeArea()
-            )
+        )
     }
 }
 
