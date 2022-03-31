@@ -55,10 +55,9 @@ final class QuoteViewModel: ObservableObject {
         if self.percentage == 40 {
             self.percentage += 10
             self.showingAlert = true
-        } else if percentage < 90 {
+        } else if percentage <= 90 {
             self.percentage += 10
-        } else if percentage == 90  {
-            self.percentage = 100
+        } else if percentage == 100  {
             self.showFinalView = true
         }
     }

@@ -73,7 +73,7 @@ struct QuoteView: View {
                 Button {
                     viewModel.nextQuote()
                 } label: {
-                    Text("CITATION SUIVANTE")
+                    Text(viewModel.percentage == 100 ? "FINIR" : "CITATION SUIVANTE")
                         .font(.system(size: 12))
                         .foregroundColor(.white)
                         .padding(.vertical, 10)
