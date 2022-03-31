@@ -1,5 +1,5 @@
 query QuotesData {
-  randomQuote {
+  quotes {
     id
     quote
     author

@@ -9,7 +9,7 @@ public final class QuotesDataQuery: GraphQLQuery {
   public let operationDefinition: String =
     """
     query QuotesData {
-      randomQuote {
+      quotes {
         __typename
         id
         quote
@@ -28,7 +28,7 @@ public final class QuotesDataQuery: GraphQLQuery {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("randomQuote", type: .nonNull(.object(RandomQuote.selections))),
+        GraphQLField("quotes", type: .nonNull(.list(.nonNull(.object(Quote.selections))))),
       ]
     }
 
@@ -38,20 +38,20 @@ public final class QuotesDataQuery: GraphQLQuery {
       self.resultMap = unsafeResultMap
     }
 
-    public init(randomQuote: RandomQuote) {
-      self.init(unsafeResultMap: ["__typename": "Query", "randomQuote": randomQuote.resultMap])
+    public init(quotes: [Quote]) {
+      self.init(unsafeResultMap: ["__typename": "Query", "quotes": quotes.map { (value: Quote) -> ResultMap in value.resultMap }])
     }
 
-    public var randomQuote: RandomQuote {
+    public var quotes: [Quote] {
       get {
-        return RandomQuote(unsafeResultMap: resultMap["randomQuote"]! as! ResultMap)
+        return (resultMap["quotes"] as! [ResultMap]).map { (value: ResultMap) -> Quote in Quote(unsafeResultMap: value) }
       }
       set {
-        resultMap.updateValue(newValue.resultMap, forKey: "randomQuote")
+        resultMap.updateValue(newValue.map { (value: Quote) -> ResultMap in value.resultMap }, forKey: "quotes")
       }
     }
 
-    public struct RandomQuote: GraphQLSelectionSet {
+    public struct Quote: GraphQLSelectionSet {
       public static let possibleTypes: [String] = ["Quote"]
 
       public static var selections: [GraphQLSelection] {

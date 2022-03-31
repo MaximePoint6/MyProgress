@@ -7,7 +7,7 @@
 
 import Foundation
 
-var previewQuoteExample: Quote = load("QuoteExample.json")
+var previewQuoteExample: Quotes.Quote = load("QuoteExample.json")
 
 func load<T: Decodable>(_ filename: String) -> T {
     let data: Data

@@ -19,12 +19,12 @@ struct QuoteView: View {
                 .ignoresSafeArea()
                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/3*2)
             VStack {
-                Text("Auteur")
+                Text(viewModel.author)
                     .padding(10)
                     .font(.system(size: 40))
                     .font(.title)
                     .foregroundColor(.white)
-                Text("Citation")
+                Text(viewModel.currentQuote)
                     .padding(.bottom)
                     .font(.headline)
                     .font(.system(size: 30))
@@ -49,17 +49,31 @@ struct QuoteView: View {
                         .fontWeight(.bold)
                         .foregroundColor(Color("Gray"))
                         .padding(5)
+                    Text("\(viewModel.percentage) %")
+                        .font(.system(size: 12))
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                        .padding(.vertical, 5)
+                        .padding(.horizontal, 10)
+                        .background(Color("FlashyOrange"))
+                        .clipShape(Capsule())
+//                        .alignmentGuide(.leading) { _ in CGFloat(UIScreen.main.bounds.width-50)/100*CGFloat(-viewModel.percentage)+15}
                     VStack (alignment: .trailing){
                         HStack(alignment: .center){
                             ZStack (alignment: .leading){
                                 Rectangle()
-                                    .frame(width: UIScreen.main.bounds.width-50, height: 10)
-                                    .cornerRadius(10)
+                                    .frame(width: UIScreen.main.bounds.width-50, height: 8)
+                                    .cornerRadius(12)
                                     .foregroundColor(.gray).opacity(0.2)
                                 Rectangle()
-                                    .frame(width: (UIScreen.main.bounds.width-50)/100*CGFloat(viewModel.percentage), height: 10)
+                                    .frame(width: (UIScreen.main.bounds.width-50)/100*CGFloat(viewModel.percentage), height: 14)
                                     .cornerRadius(10)
-                                    .foregroundColor(Color("Orange"))
+                                    .foregroundColor(Color("FlashyOrange"))
+                                Circle()
+                                    .frame(width: 12, height: 12)
+                                    .overlay(Circle().stroke(Color.black, lineWidth: 2))
+                                    .foregroundColor(.white)
+                                    .alignmentGuide(.leading) { _ in CGFloat(UIScreen.main.bounds.width-50)/100*CGFloat(-viewModel.percentage)+6}
                             }
                             Image(systemName: "star.fill")
                                 .foregroundColor(.blue)
@@ -104,6 +118,7 @@ struct ContentView_Previews: PreviewProvider {
     
     static var previews: some View {
         QuoteView()
+            .previewDevice("iPhone 13")
             .environmentObject(quoteViewModel)
     }
 }

@@ -13,7 +13,6 @@ struct FinalView: View {
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
-        
         Button(action: {
             viewModel.percentageToZero()
             presentationMode.wrappedValue.dismiss()
