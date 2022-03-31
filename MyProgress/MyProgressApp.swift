@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct MyProgressApp: App {
+    
+    @StateObject var quoteViewModel = QuoteViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            QuoteView()
+                .environmentObject(quoteViewModel)
         }
     }
 }
