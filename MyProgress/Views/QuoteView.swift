@@ -17,22 +17,28 @@ struct QuoteView: View {
                 .cornerRadius(25)
                 .foregroundColor(Color.white)
                 .ignoresSafeArea()
-                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/3*2)
+                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/5*3)
+            Image(viewModel.myImage)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 130, height: 130)
+                .alignmentGuide(.bottom) { _ in CGFloat(UIScreen.main.bounds.height/5*3+70)}
             VStack {
                 Text(viewModel.author)
-                    .padding(10)
+                    .padding(.horizontal, 20)
+                    .padding(.top, 20)
+                    .padding(.bottom, 10)
                     .font(.system(size: 40))
                     .font(.title)
                     .foregroundColor(.white)
                 Text(viewModel.currentQuote)
-                    .padding(.bottom)
+                    .padding()
                     .font(.headline)
                     .font(.system(size: 30))
                     .foregroundColor(.white)
-                Image(viewModel.myImage)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 130, height: 130)
+                Rectangle()
+                    .frame(height: UIScreen.main.bounds.height/5*1)
+                    .foregroundColor(.clear)
                 HStack (alignment: .bottom){
                     Text("\(viewModel.percentage) %")
                         .font(.system(size: 30))
@@ -58,52 +64,9 @@ struct QuoteView: View {
                         .background(Color("FlashyOrange"))
                         .clipShape(Capsule())
 //                        .alignmentGuide(.leading) { _ in CGFloat(UIScreen.main.bounds.width-50)/100*CGFloat(-viewModel.percentage)+15}
-                    VStack (alignment: .trailing){
-                        HStack(alignment: .center){
-                            ZStack (alignment: .leading){
-                                Rectangle()
-                                    .frame(width: UIScreen.main.bounds.width-50, height: 8)
-                                    .cornerRadius(12)
-                                    .foregroundColor(.gray).opacity(0.2)
-                                Rectangle()
-                                    .frame(width: (UIScreen.main.bounds.width-50)/100*CGFloat(viewModel.percentage), height: 14)
-                                    .cornerRadius(10)
-                                    .foregroundColor(Color("FlashyOrange"))
-                                Circle()
-                                    .frame(width: 12, height: 12)
-                                    .overlay(Circle().stroke(Color.black, lineWidth: 2))
-                                    .foregroundColor(.white)
-                                    .alignmentGuide(.leading) { _ in CGFloat(UIScreen.main.bounds.width-50)/100*CGFloat(-viewModel.percentage)+6}
-                            }
-                            Image(systemName: "star.fill")
-                                .foregroundColor(.blue)
-                            
-                        }
-                        Text("10 citations")
-                            .font(.caption)
-                            .foregroundColor(.gray)
-                    }
+                        BarView()
                 }.padding(.bottom, 20)
-                Button {
-                    viewModel.nextQuote()
-                } label: {
-                    Text(viewModel.percentage == 100 ? "FINIR" : "CITATION SUIVANTE")
-                        .font(.system(size: 12))
-                        .foregroundColor(.white)
-                        .padding(.vertical, 10)
-                        .padding(.horizontal, 30)
-                        .background(Color("Pink"))
-                        .clipShape(Capsule())
-                }.padding()
-                    .alert("Tu es à 50 % des citations", isPresented: $viewModel.showingAlert) {
-                        Button("Arrêter") {
-                            viewModel.percentageToZero()
-                            viewModel.showFinalView.toggle()
-                        }
-                        Button("Continuer") { }
-                    }.sheet(isPresented: $viewModel.showFinalView) {
-                        FinalView()
-                }
+                ButtonView()
                 Spacer()
             }
         }.background(
