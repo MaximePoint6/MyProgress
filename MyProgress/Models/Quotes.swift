@@ -7,15 +7,6 @@
 
 import Foundation
 
-//typealias QuotesData = QuotesDataQuery.Data
-//
-//struct Quote: Identifiable, Decodable {
-//        var id: String
-//        var quote: String
-//        var author: String
-//}
-
-
 typealias QuoteData = QuotesDataQuery.Data
 
 struct Quotes: Decodable {

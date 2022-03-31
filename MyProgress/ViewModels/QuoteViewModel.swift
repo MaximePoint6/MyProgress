@@ -19,8 +19,6 @@ final class QuoteViewModel: ObservableObject {
     var quotesCount: Int = 0
     @Published var quote: Quotes.Quote?
     
-    //@Published var currentQuote = Quotes.Quote()
-    
     init() {
         fetch()
     }
@@ -65,11 +63,11 @@ final class QuoteViewModel: ObservableObject {
     var myImage: String {
         var image: String = ""
         if self.percentage < 40 {
-            image = "Mouchoir"
+            image = "smiley_sick"
         } else if self.percentage >= 40 && self.percentage < 80{
-            image = "Triste"
+            image = "smiley_meh"
         } else {
-            image = "Heureux"
+            image = "smiley_awe"
         }
         return image
     }
